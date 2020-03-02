@@ -21,8 +21,6 @@ tryElem <- function(obj, how, what){
 
 eCaps <- list(
   chromeOptions = list(
-    #    args = c(paste0("--user-data-dir=", getwd(), "/chrome"),
-    #             "--profile-directory=Profile 1"),
     prefs = list(
       "profile.default_content_settings.popups" = 0L,
       "download.prompt_for_download" = FALSE,
@@ -43,7 +41,6 @@ remDr <- rD$client
 remDr$navigate("https://www.oslobors.no/markedsaktivitet/#/list/shares/quotelist/ose/all/all/false")
 
 # Find the links to each ticker
-#webElem <- remDr$findElements(using = "css selector", "td.ITEM_SECTOR > a")
 webElem <- tryElem(remDr, "css selector", "td.ITEM_SECTOR > a")
 
 # Create a vector of links
@@ -61,6 +58,7 @@ stockData <- list()
 # Loop through the vector of links and download the data
 # Will require a better solution than pausing for making sure page loads/downloads are complete
 for (i in seq_along(tickLinks)){
+  
   # Go to the page
   remDr$navigate(tickLinks[i])
   
