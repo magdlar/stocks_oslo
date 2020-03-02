@@ -72,7 +72,6 @@ for (i in seq_along(tickLinks)){
   webElem <- tryElem(remDr, "css selector", ".excelExport-btn.ng-binding")
   webElem[[1]]$clickElement()
   
-  # Pause to (hopefully) complete the download
   Sys.sleep(1)
   
   # Find the latest file
